@@ -47,13 +47,15 @@ public class MergeSortTest {
                     }
                 }
                 for (int l = 0; l < testArrays[i].length - 1; l++) {
-                    Assert.assertTrue("Test failed. Array isn't sorted: "
-                                    + Arrays.toString(testArrays[i]),
+                    Assert.assertTrue(
+                            "Test failed. Array isn't sorted: " + Arrays.toString(testArrays[i]),
                             testArrays[i][l] <= testArrays[i][l + 1]);
                 }
 
-                Assert.assertEquals("Test failed with elements: "
-                        + Arrays.toString(testArrays[i]), expectedMap, actualMap);
+                Assert.assertEquals(
+                        "Test failed with elements: " + Arrays.toString(testArrays[i]),
+                        expectedMap,
+                        actualMap);
             }
         }
     }
