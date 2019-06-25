@@ -16,15 +16,13 @@ public class MergeSortTest {
             {4, 2, -9, 6, -3, 0, 12, 34, 25, 11},
     };
 
-    private static final int[][] defaultArrays = testArrays.clone();
-
     @Test
     public void mergeSort() {
         MergeSort sort = new MergeSort();
         for (int i = 0; i < testArrays.length; i++) {
+            Map<Integer, Integer> expectedMap = countEntries(testArrays[i]);
             sort.mergeSort(testArrays[i]);
-            Map<Integer, Integer> actualMap = transformToHashMap(testArrays[i]);
-            Map<Integer, Integer> expectedMap = transformToHashMap(defaultArrays[i]);
+            Map<Integer, Integer> actualMap = countEntries(testArrays[i]);
             for (int j = 0; j < testArrays[i].length - 1; j++) {
                 Assert.assertTrue(
                         "Test failed. Array isn't sorted: " + Arrays.toString(testArrays[i]),
@@ -38,7 +36,7 @@ public class MergeSortTest {
         }
     }
 
-    private Map<Integer, Integer> transformToHashMap(int[] array) {
+    private Map<Integer, Integer> countEntries(int[] array) {
         Map<Integer, Integer> map = new HashMap<>();
         for (Integer number : array) {
             if (map.keySet().contains(number)) {
