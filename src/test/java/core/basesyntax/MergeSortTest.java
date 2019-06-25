@@ -21,28 +21,26 @@ public class MergeSortTest {
     @Test
     public void mergeSort() {
         MergeSort sort = new MergeSort();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < testArrays.length; i++) {
             sort.mergeSort(testArrays[i]);
-            for (int j = 0; j < testArrays[i].length; j++) {
-                Map<Integer, Integer> expectedMap = transformToHashMap(i);
-                Map<Integer, Integer> actualMap = transformToHashMap(i);
-                for (int l = 0; l < testArrays[i].length - 1; l++) {
-                    Assert.assertTrue(
-                            "Test failed. Array isn't sorted: " + Arrays.toString(testArrays[i]),
-                            testArrays[i][l] <= testArrays[i][l + 1]);
-                }
-
-                Assert.assertEquals(
-                        "Test failed with elements: " + Arrays.toString(testArrays[i]),
-                        expectedMap,
-                        actualMap);
+            Map<Integer, Integer> actualMap = transformToHashMap(testArrays[i]);
+            Map<Integer, Integer> expectedMap = transformToHashMap(defaultArrays[i]);
+            for (int j = 0; j < testArrays[i].length - 1; j++) {
+                Assert.assertTrue(
+                        "Test failed. Array isn't sorted: " + Arrays.toString(testArrays[i]),
+                        testArrays[i][j] <= testArrays[i][j + 1]);
             }
+
+            Assert.assertEquals(
+                    "Test failed with elements: " + Arrays.toString(testArrays[i]),
+                    expectedMap,
+                    actualMap);
         }
     }
 
-    private Map<Integer, Integer> transformToHashMap(int index) {
+    private Map<Integer, Integer> transformToHashMap(int[] array) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (Integer number : defaultArrays[index]) {
+        for (Integer number : array) {
             if (map.keySet().contains(number)) {
                 map.put(number, map.get(number) + 1);
             } else {
