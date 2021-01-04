@@ -3,6 +3,10 @@ package core.basesyntax;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,5 +50,14 @@ public class MergeSortTest {
             }
         }
         return map;
+    }
+
+    @Test
+    public void offsetUkraine() {
+        LocalDateTime localDateTime =
+                LocalDateTime.of(2019, Month.SEPTEMBER, 06, 13, 17);
+        OffsetDateTime expected = OffsetDateTime.of(localDateTime, ZoneOffset.of("+02:00"));
+        OffsetDateTime result = MergeSort.offsetDateTime(localDateTime);
+        Assert.assertEquals(expected, result);
     }
 }
