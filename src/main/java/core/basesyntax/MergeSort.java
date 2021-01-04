@@ -2,8 +2,6 @@ package core.basesyntax;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 
 public class MergeSort {
     /**
@@ -14,7 +12,6 @@ public class MergeSort {
     }
 
     public static OffsetDateTime offsetDateTime(LocalDateTime localTime) {
-        ZoneOffset offset = ZonedDateTime.now().getOffset();
-        return OffsetDateTime.of(localTime, offset);
+        return null;
     }
 }
